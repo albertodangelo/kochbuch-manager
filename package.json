@@ -1,0 +1,21 @@
+{
+  "name": "05_kochbuch-manager",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "alberto d'angelo",
+  "license": "ISC",
+  "scripts": {
+    "server": "nodemon server.js",
+    "client": "cd client && yarn start",
+    "start": "concurrently \"yarn server \" \"cd client && yarn start\""
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.6"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
+  }
+}
