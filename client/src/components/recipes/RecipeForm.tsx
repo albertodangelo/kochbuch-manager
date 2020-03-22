@@ -23,7 +23,7 @@ export const RecipeForm: React.FC<Props> = (props) => {
             mealImg: '',
             titleMeal: '',
             shortDesc: '',
-            ingredients: [],
+            ingredients: '',
             directions: [],
             prepTime: '',
             cookTime: '',
@@ -105,6 +105,16 @@ export const RecipeForm: React.FC<Props> = (props) => {
                 <input onChange={handleChange} name="titleMeal" type="text" id="titlemeal" defaultValue={recipe.titleMeal} />
             </div>
         </div>
+        
+        <div className="row">    
+            <div className="col-25">
+                <label className="custom-file-label" htmlFor="file">Bild</label>
+            </div>
+            <div className="col-75">
+                <input onChange={handleChange}  type="file" className="custom-file-input" name="file" id="file"  />
+            </div>
+        </div>
+
         <div className="row">
             <div className="col-25">
                 <label htmlFor="shortDesc">Kurzbeschreibung</label>
@@ -116,22 +126,12 @@ export const RecipeForm: React.FC<Props> = (props) => {
         
         <div className="row">    
             <div className="col-25">
-                <label htmlFor="directions">Beschreibung</label>
+                <label htmlFor="directions">Anleitung</label>
             </div>
             <div className="col-75">
                 <textarea onChange={handleChange} name="directions"  id="directions"  defaultValue={recipe.directions}/>
             </div>
         </div>
-        
-        <div className="row">    
-            <div className="col-25">
-                <label className="custom-file-label" htmlFor="file">Bild</label>
-            </div>
-            <div className="col-75">
-                <input onChange={handleChange}  type="file" className="custom-file-input" name="file" id="file"  />
-            </div>
-        </div>
-
         <div className="row">    
             <div className="col-25">
                 <label htmlFor="ingredients">Zutaten</label>

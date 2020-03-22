@@ -23,6 +23,7 @@ export const RecipeIndex: React.FC<Props> = (props) => {
                         <div className="container">    
                             <h4>{recipe.titleMeal}</h4>
                             <p><strong>Beschreibung: </strong>{recipe.shortDesc}</p>
+                            <p><strong>Zutaten: </strong>{recipe.ingredients}</p>
                             <p><strong>Anleitung: </strong>{recipe.directions}</p>
                             <p><strong>Vorbereitungszeit: </strong>{recipe.prepTime} Min.</p>
                             <p><strong>Kochzeit: </strong>{recipe.cookTime} Min.</p>

@@ -7,7 +7,7 @@ export interface Recipe {
     titleMeal: string,
     shortDesc: string,
     file: string,
-    ingredients: Array<string>,
+    ingredients: string,
     directions: Array<string>,
     prepTime: string,
     cookTime: string,
