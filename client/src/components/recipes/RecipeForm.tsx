@@ -40,49 +40,52 @@ export const RecipeForm: React.FC<Props> = (props) => {
       
         event.preventDefault();
 
-       
-        const formData = new FormData();
-        formData.append('file', recipe.file);
+        if(recipe.file) {
 
-        try {
-            const res = await axios.post('/upload', formData, {
-                headers: {
-                    'Content-Type':'multipart/form-data'
-                }
-            });
+            const formData = new FormData();
+            formData.append('file', recipe.file);
 
+            try {
+                const res = await axios.post('/upload', formData, {
+                    headers: {
+                        'Content-Type':'multipart/form-data'
+                    }
+                });
+
+                
+                const { fileName, filePath} = res.data;
+                const updateRecipe = { ...recipe, 'mealImg': fileName};   
             
-            const { fileName, filePath} = res.data;
-            const updateRecipe = { ...recipe, 'mealImg': fileName};   
-           
-            props.saveRecipe(updateRecipe);
+                props.saveRecipe(updateRecipe);
 
-        } catch (err) {
-            if(err.response.status === 500) {
-                console.log("there was an error with the server");
-            } else {
-                console.log(err.response.data.msg)
+            } catch (err) {
+                if(err.response.status === 500) {
+                    console.log("there was an error with the server");
+                } else {
+                    console.log(err.response.data.msg)
+                }
             }
+            
+            toggleDialog();
+            
+        } else {
+            console.log("WARNUNG -> file darf nicht leer sein");
         }
-        
-        toggleDialog();
     }
 
     
-    const handleChange = (event: any) => {
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         
-        let value: string|number|[]  = '';
+        let file = event.target.files !== null ?  event.target.files[0] : [];
         
-        if(event.target.name === 'file') {
+        setRecipe( {...recipe, [event.target.name]: file })
 
-            value = event.target.files[0];
+    }
 
-        } else {
-            value = event.target.value;
-        }
+    
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         
-        console.log("VALUE " , value);
-
+        let value: string|number  = '';
 
         const newRecipe = {...recipe, [event.target.name]:value};
         setRecipe(newRecipe);
@@ -111,7 +114,7 @@ export const RecipeForm: React.FC<Props> = (props) => {
                 <label className="custom-file-label" htmlFor="file">Bild</label>
             </div>
             <div className="col-75">
-                <input onChange={handleChange}  type="file" className="custom-file-input" name="file" id="file"  />
+                <input onChange={handleFileChange}  type="file" className="custom-file-input" name="file" id="file"  />
             </div>
         </div>
 

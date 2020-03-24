@@ -113,10 +113,12 @@ function App() {
   return (
     <div className="App">
       {/* <UserForm saveUser={createUser} />  */}
-      <RecipeForm saveRecipe={createRecipe} />
+       {/* <UserIndex users={users}  updateAction={updateUser} deleteAction={deleteUser} /> */}
       
-      {/* <UserIndex users={users}  updateAction={updateUser} deleteAction={deleteUser} /> */}
+      
+      <RecipeForm saveRecipe={createRecipe} />
       <RecipeIndex  recipies={recipies} updateActionRecipe={updateRecipe} deleteActionRecipe={deleteRecipe}/>
+    
     </div>
   );
 }
