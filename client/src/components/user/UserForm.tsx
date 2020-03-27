@@ -2,7 +2,15 @@ import React, {useState} from 'react';
 import { User } from '../../models/user';
 import { Gender } from '../../models/gender';
 import { Dialog } from '../Dialog';
-import './UserForm.css';
+/* import './UserForm.css'; */
+import styled from '@emotion/styled';
+
+const CostumForm = styled.form`
+    background-color: blue;
+    input {
+        display: block;
+    }
+`;
 
 interface Props {
     saveUser: (user:User) => void,
@@ -50,7 +58,7 @@ export const UserForm: React.FC<Props> = (props) => {
         <>
         <button className={props.user ? 'edit' : 'new'} onClick={toggleDialog}> {props.user ? 'Edit':'New'}</button>
         <Dialog open={open}>
-        <form onSubmit={handleSubmit}>
+        <CostumForm onSubmit={handleSubmit}>
         <div className="row">
             <div className="col-25">
                 <label htmlFor="forname">Vorname</label>
@@ -99,7 +107,7 @@ export const UserForm: React.FC<Props> = (props) => {
             <button className="red" onClick={toggleDialog}>Cancel</button>
             <button type="submit">Absenden</button>
         </div>
-        </form>
+        </CostumForm>
         
         </Dialog>
         </>

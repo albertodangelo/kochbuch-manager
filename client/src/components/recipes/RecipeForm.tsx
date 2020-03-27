@@ -85,7 +85,9 @@ export const RecipeForm: React.FC<Props> = (props) => {
     
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         
-        let value: string|number  = '';
+        let value: string|number  = event.target.value;
+
+        console.log(value);
 
         const newRecipe = {...recipe, [event.target.name]:value};
         setRecipe(newRecipe);
