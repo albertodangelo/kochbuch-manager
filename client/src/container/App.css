@@ -1,38 +1,30 @@
-.App {
+
+h1.ant-typography, .ant-typography h1 {
+  color: #e5e5e5;
   text-align: center;
+  margin-top: 20px;
+  color: rgba(0,0,0,0.3) !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ant-form {
+  width: 650px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Recepie caption in header */
+.img-container {
+  height: 320px;
+  position: relative;
+  left: -25px;
+  top: -25px;
+  width: calc(100% + 50px );
+  background-size: cover;
+}
+.caption {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  left: 15px;
+  color: #fff;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

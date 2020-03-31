@@ -1,6 +1,7 @@
 import React from 'react';
 import { User } from '../../models/user';
 import {UserForm } from '../user/UserForm';
+import { UserFormAnt } from './UserFormAnt';
 
 interface Props {
     users: Array<User>; 
@@ -33,7 +34,8 @@ export const UserIndex: React.FC<Props> = (props) => {
                                 <td>{user.birthday}</td>
                                 <td>{user.email}</td>
                                 <td>{user.gender}</td>
-                                <td><UserForm saveUser={props.updateAction} user={user} /></td>
+                                {/* <td><UserForm saveUser={props.updateAction} user={user} /></td> */}
+                                <td><UserFormAnt saveUser={props.updateAction} user={user} /></td>
                                 <td><button className="red"  onClick={ () => props.deleteAction(user.id)} >Delete</button></td>
                             </tr>
                         ))

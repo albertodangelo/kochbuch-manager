@@ -3,6 +3,7 @@ import { Foodtype } from '../../models/foodtype';
 import { Recipe } from '../../models/recipe';
 import axios from 'axios';
 import { Dialog } from '../Dialog';
+import { Button } from 'antd';
 
 interface Props {
     saveRecipe: (recipe:Recipe) => void,
@@ -12,8 +13,6 @@ interface Props {
 
 export const RecipeForm: React.FC<Props> = (props) => {
 
-
-    console.log(props.recipe)
 
     const [open, isOpen] = useState<boolean>(false);
 
@@ -99,7 +98,7 @@ export const RecipeForm: React.FC<Props> = (props) => {
 
     return (
         <>
-         <button className={props.recipe ? 'edit-recipe' : 'new-recipe'} onClick={toggleDialog}> {props.recipe ? 'Ändern':'Neu'}</button>
+         <Button size="large"  shape="round" type="primary" style={{margin: "20px", width: "100px", background: "green"}} className={props.recipe ? 'edit-recipe' : 'new-recipe'} onClick={toggleDialog}> {props.recipe ? 'ändern':'neu'}</Button>
         <Dialog open={open}>
         <form onSubmit={handleSubmit}>
         <div className="row">
@@ -187,7 +186,7 @@ export const RecipeForm: React.FC<Props> = (props) => {
             </div>
         </div>
         <div className="btns-end-form-recipe">
-            <button className="red" onClick={toggleDialog}>Cancel</button>
+        <Button size="large"  shape="round" type="primary" style={{margin: "20px", width: "100px", background: "red"}}  onClick={toggleDialog}>zurück</Button>
             <button type="submit">Absenden</button>
         </div>
         </form>

@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import { UserIndex } from '../components/user/UserIndex';
+import { UserIndexAnt } from '../components/user/UserIndexAnt';
 import { User } from '../models/user';
 import { Gender } from '../models/gender';
 import { UserForm } from '../components/user/UserForm';
+import { UserFormAnt } from '../components/user/UserFormAnt';
 
 
 
@@ -46,6 +48,7 @@ export const UsersContainer: React.FC = () => {
   }
   
   const updateUser = (user: User) => {
+    console.log("Update user" , user);
     const newUsers = users.map(u => (u.id === user.id ? user : u));
     setUsers(newUsers);
   };
@@ -57,8 +60,10 @@ export const UsersContainer: React.FC = () => {
 
   return (
     <div className="UsersContainer">
-      <UserForm saveUser={createUser} /> 
-       <UserIndex users={users}  updateAction={updateUser} deleteAction={deleteUser} />
+      <UserFormAnt saveUser={createUser}  />      
+     {/*  <UserForm saveUser={createUser} />  */}
+       {/* <UserIndex users={users}  updateAction={updateUser} deleteAction={deleteUser} /> */}
+       <UserIndexAnt users={users}  updateAction={updateUser} deleteAction={deleteUser} />
     </div>
   );
 }

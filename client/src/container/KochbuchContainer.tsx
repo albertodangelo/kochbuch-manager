@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { RecipeIndex } from '../components/recipes/RecipeIndex';
 import { RecipeForm } from '../components/recipes/RecipeForm';
+import { RecipeFormAnt } from '../components/recipes/RecipeFormAnt';
 import { Recipe } from "../models/recipe";
 import { Foodtype } from '../models/foodtype';
 
@@ -65,8 +66,8 @@ export const KochbuchContainer: React.FC = () => {
 
    return (
     <div className="UsersContainer">
-      
-      <RecipeForm saveRecipe={createRecipe} />
+      <RecipeFormAnt saveRecipe={createRecipe} />
+      {/* <RecipeForm saveRecipe={createRecipe} /> */}
       <RecipeIndex  recipies={recipies} updateActionRecipe={updateRecipe} deleteActionRecipe={deleteRecipe}/>
     
     </div>
