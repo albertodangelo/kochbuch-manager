@@ -1,46 +1,43 @@
 import React from 'react';
 import { User } from '../../models/user';
-import {UserForm } from '../user/UserForm';
-import { UserFormAnt } from './UserFormAnt';
+import { UserForm } from './UserForm';
 
 interface Props {
-    users: Array<User>; 
-    deleteAction: (id: number) => void;
-    updateAction: (user:User) => void;
+    users: User[]; // gleich wie users: Array<User>;
+    deleteAction: (user: User) => void;
+    updateAction: (user: User) => void;
 }
 
 export const UserIndex: React.FC<Props> = (props) => {
-
-
-    return <div className="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Vorname</th>
-                        <th>Name</th>
-                        <th>Geburtsdatum</th>
-                        <th>E-Mail</th>
-                        <th>Geschlecht</th>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>
+    return (
+        <table>
+            <thead>
+                <tr>
+                    <th>Forename</th>
+                    <th>Surname</th>
+                    <th>Birthday</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {props.users.map(user => (
+                    <tr key={user.id}>
+                        <td>{user.forname}</td>
+                        <td>{user.surname}</td>
+                        <td>{new Date(user.birthday).toLocaleDateString()}</td>
+                        <td>{user.email}</td>
+                        <td>{user.gender}</td>
+                        <td>
+                            <UserForm saveUser={props.updateAction} user={user} />
+                            <button onClick={() => props.deleteAction(user)}>
+                                Delete
+                            </button>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    { 
-                        props.users.map( (user, index) => (
-                            <tr key={index}>
-                                <td>{user.forname}</td>
-                                <td>{user.surname}</td>
-                                <td>{user.birthday}</td>
-                                <td>{user.email}</td>
-                                <td>{user.gender}</td>
-                                {/* <td><UserForm saveUser={props.updateAction} user={user} /></td> */}
-                                <td><UserFormAnt saveUser={props.updateAction} user={user} /></td>
-                                <td><button className="red"  onClick={ () => props.deleteAction(user.id)} >Delete</button></td>
-                            </tr>
-                        ))
-                        }   
-                </tbody>
-            </table>  
-        </div>
+                ))}
+            </tbody>
+        </table>
+    );
 }

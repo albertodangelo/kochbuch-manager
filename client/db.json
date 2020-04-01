@@ -1,0 +1,22 @@
+{
+    "users": [
+        {
+            "id":1,
+            "forname":"alberto",
+            "surname":"d'angelo",
+            "birthday": "1964-01-23",
+            "email": "test@test.com",
+            "gender": "male",
+            "active": true
+        },
+        {
+            "id":2,
+            "forname":"marion",
+            "surname":"rizo",
+            "birthday": "1964-01-23",
+            "email": "test@test.com",
+            "gender": "male",
+            "active": true
+        }
+    ]
+}

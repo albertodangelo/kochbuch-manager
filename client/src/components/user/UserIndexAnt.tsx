@@ -6,18 +6,19 @@ import { Table, Button   } from 'antd';
 
 interface Props {
     users: Array<User>; 
-    deleteAction: (id: number) => void;
+    deleteAction: (user:User) => void;
     updateAction: (user:User) => void;
 }
 
 export const UserIndexAnt: React.FC<Props> = (props) => {
 
+    
+
     const columns = [
         {
           title: 'Vorname',
           dataIndex: 'forname',
-          key: 'forname',
-          render: (text:string) => <a>{text}</a>,
+          key: 'forname'
         },
         {
           title: 'Nachname',
@@ -31,8 +32,8 @@ export const UserIndexAnt: React.FC<Props> = (props) => {
         },
         {
           title: 'E-Mail',
-          dataIndex: 'birthday',
-          key: 'birthday',
+          dataIndex: 'email',
+          key: 'email',
         },
         {
           title: 'Geschlecht',
@@ -50,13 +51,14 @@ export const UserIndexAnt: React.FC<Props> = (props) => {
           title: 'löschen',
           key: 'delete',
           render: (text:string, record:any) => (
-            <Button type="danger"  onClick={ () => props.deleteAction(record.id)} >Delete</Button>
+            <Button type="danger"  onClick={ () => props.deleteAction(record)} >Delete</Button>
           ),
         },
       ];
       
       const data =  props.users;
 
+      console.log(data);
 
     return ( 
     <>

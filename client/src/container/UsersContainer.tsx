@@ -1,69 +1,31 @@
-import React, {useState} from 'react';
-import { UserIndex } from '../components/user/UserIndex';
-import { UserIndexAnt } from '../components/user/UserIndexAnt';
-import { User } from '../models/user';
-import { Gender } from '../models/gender';
-import { UserForm } from '../components/user/UserForm';
-import { UserFormAnt } from '../components/user/UserFormAnt';
-
-
+import React from "react";
+import { UserIndex } from "../components/user/UserIndex";
+import { UserIndexAnt } from "../components/user/UserIndexAnt";
+import { User } from "../models/user";
+import { UserForm } from "../components/user/UserForm";
+import { UserFormAnt } from "../components/user/UserFormAnt";
+import { useSelector, useDispatch } from "react-redux";
+import { State } from "../models/state";
+import { bindActionCreators } from "redux";
+import { createUser, deleteUser, updateUser } from "../features/userFeature";
 
 export const UsersContainer: React.FC = () => {
-
-  /** 
-   * users
-   */
-  const defaultUsers: User[] = [
-    {
-        id: 0,
-        forname: "Chuck",
-        surname: "Norris",
-        birthday: new Date().getTime(),
-        email: "chuck@norris.com",
-        gender: Gender.MALE
-    },
-    {
-        id: 1,
-        forname: "Scarlett",
-        surname: "Johanson",
-        birthday: new Date().getTime(),
-        email: "scarlett@johanson.com",
-        gender: Gender.FEMALE
-    }
-  ];
-  const [users, setUsers] = useState<User[]>(defaultUsers);
-
-
-  const createUser = (user: User) => {
-    console.log(user)
-    const newUser = { ...user, id: new Date().getTime()};
-    const newUsers = [...users, newUser];
-    setUsers(newUsers)
-  }
-
-
-  const deleteUser = (userId: number) => {
-    const newUser = users.filter(u => u.id !== userId);
-    setUsers(newUser);
-  }
-  
-  const updateUser = (user: User) => {
-    console.log("Update user" , user);
-    const newUsers = users.map(u => (u.id === user.id ? user : u));
-    setUsers(newUsers);
-  };
-
- 
-  
-
- 
+  const users = useSelector<State, User[]>(state => state.users);
+  const dispatch = useDispatch();
+  const actions = bindActionCreators({createUser, deleteUser, updateUser}, dispatch);
 
   return (
     <div className="UsersContainer">
-      <UserFormAnt saveUser={createUser}  />      
+      <UserFormAnt saveUser={actions.createUser}  />      
      {/*  <UserForm saveUser={createUser} />  */}
-       {/* <UserIndex users={users}  updateAction={updateUser} deleteAction={deleteUser} /> */}
-       <UserIndexAnt users={users}  updateAction={updateUser} deleteAction={deleteUser} />
+       {/*  <UserIndex  
+          users={users}  
+          updateAction={actions.updateUser} 
+          deleteAction={actions.deleteUser}/> */}  
+       <UserIndexAnt 
+          users={users}  
+          updateAction={actions.updateUser} 
+          deleteAction={actions.deleteUser} />
     </div>
   );
 }
