@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { Foodtype } from '../../models/foodtype';
 import { Recipe } from '../../models/recipe';
-import axios from 'axios';
 import { Dialog } from '../Dialog';
 import { Form, Input, Button, DatePicker, Select, Upload, InputNumber } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
@@ -35,7 +34,7 @@ export const RecipeFormAnt: React.FC<Props> = (props) => {
 
         console.log('Success:', values);
         
-        handleUpload(values);
+        props.saveRecipe(values);
        
         toggleDialog();
     };
@@ -69,35 +68,6 @@ export const RecipeFormAnt: React.FC<Props> = (props) => {
             foodtype: Foodtype.VEGETARIAN
         };
 
-    const handleUpload = async ( values: any ) => {
-        
-
-        const file = values.upload[0].originFileObj
-
-        const formData = new FormData();
-        formData.append('file', file);
-
-        try {
-            const res = await axios.post('/upload', formData, {
-                headers: {
-                    'Content-Type':'multipart/form-data'
-                }
-            });
-
-            
-            const { fileName, filePath} = res.data;
-            const updateRecipe = { ...values, 'mealImg': fileName};   
-        
-            props.saveRecipe(updateRecipe);
-
-        } catch (err) {
-            if(err.response.status === 500) {
-                console.log("there was an error with the server");
-            } else {
-                console.log(err.response.data.msg)
-            }
-        }        
-    }
 
     const toggleDialog = () => {
         isOpen(!open);
@@ -133,7 +103,7 @@ export const RecipeFormAnt: React.FC<Props> = (props) => {
         </Form.Item>
 
         <Form.Item
-            name="upload"
+            name="file"
             label="Upload"
             valuePropName="fileList"
             getValueFromEvent={normFile}

@@ -11,12 +11,15 @@ const { Title } = Typography;
 
 interface Props {
     recipies: Array<Recipe>;
-    deleteActionRecipe: (id: number) => void;
+    deleteActionRecipe: (recipe: Recipe) => void;
     updateActionRecipe: (recipe: Recipe) => void;
 }
 
 export const RecipeIndex: React.FC<Props> = (props) => {
     
+
+    console.log("props" , props);
+
     return (
 <>
         <div  className="container-cards">
@@ -43,7 +46,7 @@ export const RecipeIndex: React.FC<Props> = (props) => {
                             <p><strong>Bewertung: </strong>{recipe.rated}</p>
                             <RecipeFormAnt saveRecipe={props.updateActionRecipe} recipe={recipe}/>
                             {/* <RecipeForm saveRecipe={props.updateActionRecipe} recipe={recipe}/> */}
-                            <Button size="large"  shape="round" type="primary" style={{margin: "20px", width: "100px", background: "red"}} onClick={ () => props.deleteActionRecipe(recipe.id)} >löschen</Button>
+                            <Button size="large"  shape="round" type="primary" style={{margin: "20px", width: "100px", background: "red"}} onClick={ () => props.deleteActionRecipe(recipe)} >löschen</Button>
                         </div>
                         
                     </Card>

@@ -1,5 +1,5 @@
 {
-  "name": "user-manager",
+  "name": "kochbuch-manager",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -28,6 +28,7 @@
     "typesafe-actions": "^5.1.0",
     "typescript": "~3.8.3"
   },
+  "proxy": "http://localhost:5000",
   "scripts": {
     "start": "react-scripts start",
     "api": "./node_modules/.bin/json-server --watch ./db.json --port 3001",

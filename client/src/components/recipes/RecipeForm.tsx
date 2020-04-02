@@ -27,7 +27,7 @@ export const RecipeForm: React.FC<Props> = (props) => {
             prepTime: '',
             cookTime: '',
             rated: '',
-            file: '',
+            file: [],
             foodtype: Foodtype.VEGETARIAN
         };
 
@@ -38,7 +38,7 @@ export const RecipeForm: React.FC<Props> = (props) => {
         
       
         event.preventDefault();
-
+/* 
         if(recipe.file) {
 
             const formData = new FormData();
@@ -70,6 +70,7 @@ export const RecipeForm: React.FC<Props> = (props) => {
         } else {
             console.log("WARNUNG -> file darf nicht leer sein");
         }
+         */
     }
 
     
