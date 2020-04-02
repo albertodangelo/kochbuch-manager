@@ -13,23 +13,23 @@ import storage from 'redux-persist/es/storage';
 import { PersistGate } from 'redux-persist/integration/react'
 
 const persistorConfig: PersistConfig<State> = {
-    key: 'user-manager',
+    key: 'kochbuch-manager',
     version: 1,
     storage
 
 }
 
-//const persistentReducer = persistReducer(persistorConfig, reducer);
+const persistentReducer = persistReducer(persistorConfig, reducer);
 
-const store:Store<State> = createStore( reducer );
+const store:Store<State> = createStore( persistentReducer );
 
-//const persistor = persistStore(store);
+const persistor = persistStore(store);
 
 const createApp = () => (
     <Provider store={store}>
-       {/*  <PersistGate persistor={persistor}> */}
+        <PersistGate persistor={persistor}>
             <App />
-        {/* </PersistGate> */}    
+        </PersistGate>    
     </Provider>
 )
 
