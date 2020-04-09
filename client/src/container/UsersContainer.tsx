@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { UserIndex } from "../components/user/UserIndex";
 import { UserIndexAnt } from "../components/user/UserIndexAnt";
 import { User } from "../models/user";
@@ -11,17 +11,26 @@ import { UserFormAnt } from "../components/user/UserFormAnt";
 import { useSelector, useDispatch } from "react-redux";
 import { State } from "../models/state";
 import { bindActionCreators } from "redux";
-import { createUser, deleteUser, updateUser } from "../features/userFeature";
+import { indexUsersAction, createUserAction, deleteUserAction, updateUserAction } from "../features/userFeature";
+
 
 export const UsersContainer: React.FC = () => {
+
   
   const users = useSelector<State, User[]>(state => state.users);
   const dispatch = useDispatch();
-  const actions = bindActionCreators({createUser, deleteUser, updateUser}, dispatch);
+  const actions = bindActionCreators({indexUsersAction, createUserAction, deleteUserAction, updateUserAction}, dispatch);
 
+
+  useEffect(() => {
+    // request
+    actions.indexUsersAction();
+  }, []);
+
+  
   return (
     <div className="UsersContainer">
-      <UserFormAnt saveUser={actions.createUser}  />      
+      <UserFormAnt saveUser={actions.createUserAction}  />      
      {/*  <UserForm saveUser={createUser} />  */}
        {/*  <UserIndex  
           users={users}  
@@ -29,8 +38,8 @@ export const UsersContainer: React.FC = () => {
           deleteAction={actions.deleteUser}/> */}  
        <UserIndexAnt 
           users={users}  
-          updateAction={actions.updateUser} 
-          deleteAction={actions.deleteUser} />
+          updateAction={actions.updateUserAction} 
+          deleteAction={actions.deleteUserAction} />
     </div>
   );
 }

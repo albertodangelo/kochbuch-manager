@@ -3,7 +3,6 @@ import { UsersContainer } from './UsersContainer';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ParametersContainer } from './ParametersContainer';
 import { KochbuchContainer } from './KochbuchContainer';
-import { Test } from './Test';
 import { MenuContainer } from './MenuContainer'
 import './App.css';
 
@@ -35,7 +34,6 @@ export const App: React.FC = () => {
                 <Route path="/" exact={true} component={KochbuchContainer} />
                 <Route path="/kochbuch" exact={true} component={KochbuchContainer} />
                 <Route path='/parameters/:id' component={ParametersContainer} />
-                <Route path='/test' component={Test} />
               </Switch>
             </div>
           </BrowserRouter>
