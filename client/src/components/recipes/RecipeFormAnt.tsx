@@ -5,6 +5,7 @@ import { Dialog } from '../Dialog';
 import { Form, Input, Button, DatePicker, Select, Upload, InputNumber } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import TextArea from 'antd/lib/input/TextArea';
+import axios from 'axios';
 
 const layout = {
     labelCol: { span: 8 },
@@ -34,10 +35,46 @@ export const RecipeFormAnt: React.FC<Props> = (props) => {
 
         console.log('Success:', values);
         
-        props.saveRecipe(values);
-       
+
+        //props.saveRecipe(values);
+        fileUpload(values);
+
         toggleDialog();
     };
+
+
+    // ging leider nicht anders aufgrund der Art dass das File über
+    // den Proxy geladen wird... würde ich in echt sowieso anders machen 
+    const fileUpload =  ( values: Recipe ) => {
+    
+        const formData = new FormData();
+        formData.append('file', values.file[0].originFileObj);
+    
+        try {
+            const res = axios.post('/upload', formData, {
+                headers: {
+                    'Content-Type':'multipart/form-data'
+                }
+            }).then( res => {
+                const { fileName, filePath} = res.data;
+                
+                values.mealImg = fileName;
+                props.saveRecipe(values);
+            })
+    
+                
+           
+        } catch (err) {
+            if(err.response.status === 500) {
+                console.log("there was an error with the server");
+            } else {
+                console.log(err.response.data.msg)
+            }
+        }        
+    }
+
+
+
 
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);

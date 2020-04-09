@@ -5,12 +5,13 @@ import{ App } from './container/App';
 import * as serviceWorker from './serviceWorker';
 import "antd/dist/antd.css";
 import { State, initialState } from './models/state';
-import { Store, createStore } from 'redux';
+import { Store, createStore, applyMiddleware } from 'redux';
 import { reducer } from './models/reducer';
 import { Provider} from 'react-redux';
 import { PersistConfig, persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
-import { PersistGate } from 'redux-persist/integration/react'
+import { PersistGate } from 'redux-persist/integration/react';
+import thunk from 'redux-thunk';
 
 const persistorConfig: PersistConfig<State> = {
     key: 'kochbuch-manager',
@@ -21,7 +22,7 @@ const persistorConfig: PersistConfig<State> = {
 
 const persistentReducer = persistReducer(persistorConfig, reducer);
 
-const store:Store<State> = createStore( persistentReducer );
+const store:Store<State> = createStore( persistentReducer, applyMiddleware(thunk) );
 
 const persistor = persistStore(store);
 

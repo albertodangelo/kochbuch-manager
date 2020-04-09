@@ -5,4 +5,4 @@ import { recipeReducer } from "../features/kochbuchFeature";
 export const reducer = combineReducers({
     users: usersReducer,
     recipies: recipeReducer
-});
+}); 

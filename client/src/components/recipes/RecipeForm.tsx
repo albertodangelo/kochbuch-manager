@@ -34,43 +34,10 @@ export const RecipeForm: React.FC<Props> = (props) => {
     const [ recipe, setRecipe] = useState<Recipe>(initialRecipe);
 
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         
       
         event.preventDefault();
-/* 
-        if(recipe.file) {
-
-            const formData = new FormData();
-            formData.append('file', recipe.file);
-
-            try {
-                const res = await axios.post('/upload', formData, {
-                    headers: {
-                        'Content-Type':'multipart/form-data'
-                    }
-                });
-
-                
-                const { fileName, filePath} = res.data;
-                const updateRecipe = { ...recipe, 'mealImg': fileName};   
-            
-                props.saveRecipe(updateRecipe);
-
-            } catch (err) {
-                if(err.response.status === 500) {
-                    console.log("there was an error with the server");
-                } else {
-                    console.log(err.response.data.msg)
-                }
-            }
-            
-            toggleDialog();
-            
-        } else {
-            console.log("WARNUNG -> file darf nicht leer sein");
-        }
-         */
     }
 
     
