@@ -17,6 +17,7 @@ export const createUserAction = (user: User) => {
         createUserClient(user).then(res => dispatch(createUser(res.data)));
     }
 };
+
 export const updateUser = createAction('users/UPDATE')<User>();
 export const updateUserAction = (user: User) => {
     return (dispatch: Dispatch) => {

@@ -1,18 +1,18 @@
 import { axiosInstance } from './db_connect';
-import { User } from "../models/user";
+import { Recipe } from "../models/recipe";
 
-export const indexUsersClient = () => {
-    return axiosInstance.get<User[]>('users');
+export const indexRecipiesClient = () => {
+    return axiosInstance.get<Recipe[]>('recipies');
 };
 
-export const createUserClient = (user: User) => {
-    return axiosInstance.post<User>('users', user);
+export const createRecipeClient = (recipe: Recipe) => {
+    return axiosInstance.post<Recipe>('recipies', recipe);
 }
 
-export const updateUserClient = (user: User) => {
-    return axiosInstance.put<User>(`users/${user.id}`, user);
+export const updateRecipeClient = (recipe: Recipe) => {
+    return axiosInstance.put<Recipe>(`recipies/${recipe.id}`, recipe);
 }
 
-export const deleteUserClient = (user: User) => {
-    return axiosInstance.delete<User>(`users/${user.id}`);
+export const deleteRecipeClient = (recipe: Recipe) => {
+    return axiosInstance.delete<Recipe>(`recipies/${recipe.id}`);
 }

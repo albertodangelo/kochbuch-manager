@@ -19,7 +19,7 @@ export interface Recipe {
    * recipies
    */
 export  const defaultRecipe: Recipe[] = [
-    {
+   /*  {
         id: 0,
         mealImg: "apfelkuchen.png",
         titleMeal: "Saftiger Apfelkuchen mit Streusel",
@@ -50,5 +50,5 @@ export  const defaultRecipe: Recipe[] = [
         cookTime: '60',
         rated: '3',
         foodtype: Foodtype.VEGETARIAN
-    }
+    } */
   ];

@@ -10,7 +10,7 @@ export interface User {
 }
 
 export const defaultUsers: User[] = [
-    {
+    /* {
         id: 0,
         forname: "Chuck",
         surname: "Norris",
@@ -33,7 +33,7 @@ export const defaultUsers: User[] = [
         birthday: new Date().getTime(),
         email: "madonna@johanson.com",
         gender: Gender.FEMALE
-    }
+    } */
   ];
 
 export interface UserDraft extends User {
